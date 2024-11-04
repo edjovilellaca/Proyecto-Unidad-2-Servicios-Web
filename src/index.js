@@ -15,7 +15,7 @@ const typeDefs = [productTypeDefs, userTypeDefs, brandTypeDefs];
 const resolvers = [productResolvers, userResolvers, brandResolvers];
 
 const startServer = async () => {
-    await mongoose.connect('mongodb+srv://edjovilellaca:contra123@projects.qndkw.mongodb.net/?retryWrites=true&w=majority&appName=projects');
+    await mongoose.connect('mongodb+srv://edjovilellaca:contra123@projects.qndkw.mongodb.net/CarritoCompras?retryWrites=true&w=majority&appName=projects');
     const server = new ApolloServer({ typeDefs, resolvers });
     server.listen().then(({ url }) => {
         console.log(`Servidor corriendo en ${url}`);
