@@ -3,6 +3,7 @@ const facturapi = new Facturapi('sk_test_dr0ao5D7ZWjxGbvMmApV4vaByZenkQYP82ABpq4
 
 async function createProduct(product){
     const facturapiProduct = {
+        ID: product._id,
         description: product.desc,
         product_key: "50202306",
         price: product.price
@@ -62,12 +63,11 @@ async function updateProduct(facturapiId, updatedData) {
     }
 }
 
-async function createReceipt(shCart) {
+async function createReceipt(shCart, facturapiData) {
     try {
         const items = shCart.productos.map(product => ({
-            product: product.facturapi,
-            quantity: product.quantity,
-            unit_price: product.price
+            product: product.product._id,
+            quantity: product.quantity || 'Errorzaso en la cantidad'
         }));
         return await facturapi.receipts.create({
             payment_form: Facturapi.PaymentForm.DINERO_ELECTRONICO,
@@ -82,3 +82,13 @@ async function createReceipt(shCart) {
 
 
 module.exports = { createProduct, createClient, deleteProduct, deleteClient, updateProduct, updateClient, createReceipt };
+
+
+/* 
+{  
+  "cartId": "6737779584e3361562cf0bea",
+  "updateShCartInput2": {
+    "status": "Inactivo"
+  }
+}
+*/

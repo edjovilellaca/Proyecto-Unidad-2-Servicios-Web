@@ -14,7 +14,8 @@
     "express": "^4.21.1",
     "facturapi": "^4.4.1",
     "graphql": "^16.9.0",
-    "mongoose": "^8.7.3"
+    "mongoose": "^8.7.3",
+    "node-mailjet": "^6.0.6"
   },
   "description": ""
 }

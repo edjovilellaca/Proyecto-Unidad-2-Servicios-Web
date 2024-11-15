@@ -14,6 +14,7 @@ const typeDefs = gql`
         total: Float!
         createdAt: String!
         updatedAt: String!
+        status: String!
     }
 
     type Query {
@@ -31,12 +32,17 @@ const typeDefs = gql`
         quantity: Int!
     }
 
+    input UpdateCartInput{
+        status: String
+    }
+
     type Mutation {
         createShoppingCart(userId: ID!): ShoppingCart!
         addItemToCart(userId: ID!, input: [AddToCartInput!]!): ShoppingCart!
         updateCartItem(userId: ID!, input: UpdateCartItemInput!): ShoppingCart!
         removeItemFromCart(userId: ID!, productId: ID!): ShoppingCart!
         clearCart(userId: ID!): ShoppingCart!
+        updateShCart(cartId: ID!, input: UpdateCartInput!): ShoppingCart!
     }
 `;
 

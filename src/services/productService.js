@@ -12,6 +12,7 @@ module.exports = {
         const facturapiProduct = await facturapi.createProduct(product);
 
         product.facturapi = facturapiProduct.id;
+        product._id = facturapiProduct.id;
         console.log(facturapiProduct);
         console.log(product);
         

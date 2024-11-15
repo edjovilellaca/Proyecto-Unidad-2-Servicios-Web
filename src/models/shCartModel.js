@@ -16,7 +16,8 @@ const shCartSchema = new mongoose.Schema({
     total:          {type: Number,      default: 0 },
     sDate:          {type: Date,        default: Date.now },
     cDate:          {type: Date,        default: Date.now },
-    status:         {type: String,      default: "Activo" },         
+    status:         {type: String,      default: "Activo" },
+    facturapi:      {type: String,      required: false }         
 });
 
 const shCart = mongoose.model('shCart', shCartSchema);

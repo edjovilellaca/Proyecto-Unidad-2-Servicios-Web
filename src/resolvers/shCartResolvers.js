@@ -11,6 +11,7 @@ const resolvers = {
         updateCartItem: (_, { userId, input }) => shCartService.updateCartItem(userId, input),
         removeItemFromCart: (_, { userId, productId }) => shCartService.removeItemFromCart(userId, productId),
         clearCart: (_, { userId }) => shCartService.clearCart(userId),
+        updateShCart: (_, { cartId, input }) => shCartService.updateShCart(cartId, input),
     }
 };
 

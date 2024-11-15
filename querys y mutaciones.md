@@ -75,38 +75,13 @@
   }
 }
 
+Po Tato:
+67370e3dd090b55ed708209c
 
-
-{
-  "createShCartInput": {
-    "user": [{
-      "id": "6728697335c7edce90f49b10",
-      "email": "carlosmendoza@example.com"
-      }],
-    "productos": [
-      {
-        "id":"672875136a67111428d485a6",
-        "name": "Camry SE 2018",
-        "cantidad": "2",
-        "brandId": "67287304171f2a7e705f4eb4",
-        "price": "246700"
-      },
-      {
-        "id":"672865136a65112428d485a6",
-        "name": "Matrix XR 2005",
-        "cantidad": "3",
-        "brandId": "672873a417132a7e775f4eb4",
-        "price": "80000"
-      },
-      {
-        "id":"672871136a6a1114285485a6",
-        "name": "GR86 2025",
-        "cantidad": "1",
-        "brandId": "97287314171f3a7e405f4eb4",
-        "price": "767700"
-      }
-    ],
-    "subtotal": 1747800,
-    "total": 2027448
-  }
+{  
+  "addItemToCartUserId2": "6737779584e3361562cf0bea",
+  "addItemToCartInput2": [{
+    "productId": "673776d108a4fd4ee8eb3974",
+    "quantity": 1
+  }]
 }
