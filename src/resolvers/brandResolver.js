@@ -15,7 +15,7 @@ const resolvers = {
                 return await brandService.createBrand(input);
             } catch (error) {
                 console.error("Error in createBrand resolver:", error);
-                throw new Error("Failed to create brand.");
+                throw new Error(`Failed to create brand. ${error.message}`);
             }
         },
         updateBrand: async (_, { _id, updates }) => {
@@ -23,7 +23,7 @@ const resolvers = {
                 return await brandService.updateBrand(_id, updates);
             } catch (error) {
                 console.error("Error in updateBrand resolver:", error);
-                throw new Error("Failed to update brand.");
+                throw new Error(`Failed to update brand with ID: ${_id}. ${error.message}`);
             }
         },
         deleteBrand: async (_, { _id }) => {
@@ -31,7 +31,7 @@ const resolvers = {
                 return await brandService.deleteBrand(_id);
             } catch (error) {
                 console.error("Error in deleteBrand resolver:", error);
-                throw new Error("Failed to delete brand.");
+                throw new Error(`Failed to delete brand with ID: ${_id}. ${error.message}`);
             }
         }
     }

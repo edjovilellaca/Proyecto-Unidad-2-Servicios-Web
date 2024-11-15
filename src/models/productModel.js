@@ -8,8 +8,8 @@ const productSchema = new mongoose.Schema({
     brand:      {type: mongoose.Schema.Types.ObjectId, ref: 'Brand', required: true},
     quantity:   {type: Number,      require: true},
     cDate:      {type: Date,        default: Date.now},
-    images:     {type: [String],    require: true}
+    images:     {type: [String],    require: true},
+    facturapi:  {type: String,      required: true}
 });
 
-const Product = mongoose.model('Product', productSchema);
-module.exports = Product;   
+module.exports = mongoose.model('Product', productSchema);

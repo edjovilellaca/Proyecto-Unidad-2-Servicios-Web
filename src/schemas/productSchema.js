@@ -1,4 +1,3 @@
-// schemas/productSchema.js
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
@@ -10,7 +9,7 @@ const typeDefs = gql`
     }
 
     type Product {
-        _id: ID!
+        _id:        ID!
         name:       String!
         desc:       String!
         price:      Float!
@@ -19,6 +18,7 @@ const typeDefs = gql`
         quantity:   Int!
         cDate:      String!
         images:     [String!]!
+        facturapi:  String
     }
 
     type Query {
@@ -34,6 +34,7 @@ const typeDefs = gql`
         brandAlias: String 
         quantity:   Int!
         images:     [String!]!
+        facturapi:  String
     }
 
     input UpdateProductInput {
@@ -45,6 +46,7 @@ const typeDefs = gql`
         brandAlias: String
         quantity:   Int
         images:     [String]
+        
     }
 
     type Mutation {

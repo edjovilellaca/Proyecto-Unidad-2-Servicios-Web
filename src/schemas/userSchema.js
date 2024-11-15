@@ -19,10 +19,12 @@ const typeDefs = gql`
         email: String!
         password: String!
         direccion: String!
+        zipCode: Int!
         telefono: String!
         fechaRegistro: String!
         tipoUsuario: TipoUsuario!
         metodoPagoPreferido: [MetodoPago]!
+        facturapi: String
     }
 
     type Query {
@@ -35,6 +37,7 @@ const typeDefs = gql`
         email: String!
         password: String!
         direccion: String!
+        zipCode: Int!
         telefono: String!
         tipoUsuario: TipoUsuario = cliente
         metodoPagoPreferido: [MetodoPago]!
@@ -45,6 +48,7 @@ const typeDefs = gql`
         email: String
         password: String
         direccion: String
+        zipCode: Int
         telefono: String
         tipoUsuario: TipoUsuario
         metodoPagoPreferido: [MetodoPago]

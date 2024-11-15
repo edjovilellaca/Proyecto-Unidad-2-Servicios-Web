@@ -5,8 +5,9 @@ const userSchema = new mongoose.Schema({
     email:            { type: String, required: true, unique: true },
     password:         { type: String, required: true },
     direccion:        { type: String, required: true },
+    zipCode:          { type: Number, required: true },
     telefono:         { type: String, required: true },
-    fechaRegistro:    { type: Date, default: Date.now },
+    fechaRegistro:    { type: Date,   default: Date.now },
     tipoUsuario:      { type: String, enum: ["cliente", "admin"], default: "cliente" },
     metodoPagoPreferido: { 
         type: [String], 
@@ -17,8 +18,8 @@ const userSchema = new mongoose.Schema({
             "Deposito"
         ],
         required: true
-    }
+    },
+    facturapi:        { type: String, required: true }
 });
 
-const User = mongoose.model('User', userSchema);
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);

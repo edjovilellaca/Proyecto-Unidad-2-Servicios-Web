@@ -9,10 +9,13 @@ const userResolvers = require('./resolvers/userResolver');
 //Brand
 const brandTypeDefs = require('./schemas/brandSchema');
 const brandResolvers = require('./resolvers/brandResolver');
+//Shopping Cart
+const shCartTypeDefs = require('./schemas/shCartSchema');
+const shCartResolvers = require('./resolvers/shCartResolvers');
 
 //PalMongo
-const typeDefs = [productTypeDefs, userTypeDefs, brandTypeDefs];
-const resolvers = [productResolvers, userResolvers, brandResolvers];
+const typeDefs = [productTypeDefs, userTypeDefs, brandTypeDefs, shCartTypeDefs];
+const resolvers = [productResolvers, userResolvers, brandResolvers, shCartResolvers];
 
 const startServer = async () => {
     await mongoose.connect('mongodb+srv://edjovilellaca:contra123@projects.qndkw.mongodb.net/CarritoCompras?retryWrites=true&w=majority&appName=projects');
