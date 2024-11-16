@@ -66,9 +66,6 @@ module.exports = {
             cart.total += product.price * item.quantity;
         }
 
-        console.log('-------------------------------------------------');
-        console.log('Carrito completo: ', cart);
-    
         return await cart.save();
     },
 
@@ -117,7 +114,6 @@ module.exports = {
     
         const userName = await getUserNameByCart(cart);
     
-        // Construir el HTML dinámico para los productos
         const productDetailsHTML = cart.productos
             .map(item => `
                 <tr>
@@ -129,7 +125,6 @@ module.exports = {
             `)
             .join('');
     
-        // Plantilla HTML
         const htmlContent = `
             <h1>Felicidades ${userName}</h1>
             <h2>Recibo de venta</h2>
@@ -158,7 +153,7 @@ module.exports = {
                     {
                         From: {
                             Email: "edjovilellaca@ittepic.edu.mx",
-                            Name: "Mailjet Pilot"
+                            Name: "El Jefazo"
                         },
                         To: [
                             {
@@ -180,23 +175,18 @@ module.exports = {
             .catch((err) => {
                 console.error('Error al enviar correo:', err.statusCode, err.message);
             });
-    
-        // Actualizar carrito con los cambios
         return await ShoppingCart.findByIdAndUpdate(cartId, updates, { new: true });
     }
     
 };
 
-
 async function getUserNameByCart(cart) {
     try {
-        // Buscar el usuario basado en el ID almacenado en cart.user
         const userr = await user.findById(cart.user);
         if (!userr) {
             throw new Error('Usuario no encontrado.');
         }
-
-        // Retornar el nombre del usuario
+        
         return userr.nombreCompleto;
     } catch (error) {
         console.error('Error al obtener el nombre del usuario:', error.message);
@@ -209,7 +199,6 @@ const getCartWithProductDetails = async (cartId) => {
         const cart = await ShoppingCart.findById(cartId).populate('productos.product');
         if (!cart) throw new Error('Carrito no encontrado.');
 
-        // Retorna el carrito con los datos de los productos poblados
         return cart;
     } catch (error) {
         console.error('Error al obtener el carrito:', error.message);
