@@ -126,7 +126,7 @@ module.exports = {
             .join('');
     
         const htmlContent = `
-            <h1>Felicidades ${userName}</h1>
+            <h1>Felicidades ${userName.nombreCompleto}</h1>
             <h2>Recibo de venta</h2>
             <table border="1" style="border-collapse: collapse; width: 100%;">
                 <thead>
@@ -157,7 +157,7 @@ module.exports = {
                         },
                         To: [
                             {
-                                Email: "edjovilellaca@ittepic.edu.mx",
+                                Email: userName.email,
                                 Name: "ugabuga"
                             }
                         ],
@@ -187,7 +187,7 @@ async function getUserNameByCart(cart) {
             throw new Error('Usuario no encontrado.');
         }
         
-        return userr.nombreCompleto;
+        return userr;
     } catch (error) {
         console.error('Error al obtener el nombre del usuario:', error.message);
         throw error;
