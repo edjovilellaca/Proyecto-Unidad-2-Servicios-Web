@@ -14,7 +14,7 @@ async function createProduct(product){
 async function createClient(user) {
     const facturapiClient = {
         legal_name: user.nombreCompleto,
-        tax_id: user.taxId || "XAXX010101000",  
+        tax_id: user.RFC || "XAXX010101000",  
         tax_system: user.taxSystem || "601",    
         email: user.email,
         address: {
@@ -63,12 +63,30 @@ async function updateProduct(facturapiId, updatedData) {
     }
 }
 
-async function createReceipt(shCart, facturapiData) {
+async function createReceipt(shCart, user) {
+
     try {
         const items = shCart.productos.map(product => ({
             product: product.product._id,
             quantity: product.quantity || 'Errorzaso en la cantidad'
         }));
+
+        const invoice = await facturapi.invoices.create({
+            customer: {
+              legal_name: user.nombreCompleto,
+              email: user.email,
+              tax_id: user.RFC,
+              tax_system: '601',
+              address: {
+                zip: user.zipCode
+              }
+            },
+            items: items,
+            payment_form: user.metodoPagoPreferido,
+            folio_number: 914,
+            series: 'F'
+          });
+
         return await facturapi.receipts.create({
             payment_form: Facturapi.PaymentForm.DINERO_ELECTRONICO,
             items: items
@@ -79,16 +97,4 @@ async function createReceipt(shCart, facturapiData) {
     }
 }
 
-
-
 module.exports = { createProduct, createClient, deleteProduct, deleteClient, updateProduct, updateClient, createReceipt };
-
-
-/* 
-{  
-  "cartId": "6737779584e3361562cf0bea",
-  "updateShCartInput2": {
-    "status": "Inactivo"
-  }
-}
-*/

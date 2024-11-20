@@ -37,7 +37,7 @@ module.exports = {
         const product = await Product.findById(_id);
         if (!product) throw new Error(`Product with ID: ${_id} not found.`);
 
-        const productDeleted = await facturapi.deleteClient(product.facturapi);
+        const productDeleted = await facturapi.deleteProduct(product.facturapi);
         if (!productDeleted) throw new Error(`Product with ID: ${_id} couldn't be deleted from Facturapi.`);
 
         return await Product.findByIdAndDelete(_id);

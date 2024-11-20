@@ -4,6 +4,7 @@ const userSchema = new mongoose.Schema({
     nombreCompleto:   { type: String, required: true },
     email:            { type: String, required: true, unique: true },
     password:         { type: String, required: true },
+    RFC:              { type: String, required: true },
     direccion:        { type: String, required: true },
     zipCode:          { type: Number, required: true },
     telefono:         { type: String, required: true },

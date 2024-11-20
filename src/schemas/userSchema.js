@@ -18,6 +18,7 @@ const typeDefs = gql`
         nombreCompleto: String!
         email: String!
         password: String!
+        RFC: String!
         direccion: String!
         zipCode: Int!
         telefono: String!
@@ -36,6 +37,7 @@ const typeDefs = gql`
         nombreCompleto: String!
         email: String!
         password: String!
+        RFC: String!
         direccion: String!
         zipCode: Int!
         telefono: String!

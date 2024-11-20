@@ -113,6 +113,12 @@ module.exports = {
         if (!cart) throw new Error(`Carrito con ID: ${cartId} no encontrado.`);
     
         const userName = await getUserNameByCart(cart);
+
+        if(toString(shCart.status).match('Activo')){
+            return await ShoppingCart.findByIdAndUpdate(cartId, updates, { new: true });
+        }
+        
+        await facturapi.createReceipt(cart, userName);
     
         const productDetailsHTML = cart.productos
             .map(item => `
