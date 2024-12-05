@@ -71,18 +71,29 @@ async function createReceipt(shCart, user) {
             quantity: product.quantity || 'Errorzaso en la cantidad'
         }));
 
+        
+        let metodoUsado = "";
+        user.metodoPagoPreferido.forEach(metodo => {
+            if (metodo === 'Credito') metodoUsado = "04"  
+            if (metodo === 'Debito') metodoUsado = "28"  
+            if (metodo === 'Deposito') metodoUsado = "31"  
+            if (metodo === 'Transferencia') metodoUsado = "03"  
+        });
+
+        const nomasPorElZip = user.zipCode + "";
+
         const invoice = await facturapi.invoices.create({
             customer: {
               legal_name: user.nombreCompleto,
               email: user.email,
-              tax_id: user.RFC,
+              tax_id: user.RFC || "XAXX010101000",
               tax_system: '601',
               address: {
-                zip: user.zipCode
+                zip: nomasPorElZip
               }
             },
             items: items,
-            payment_form: user.metodoPagoPreferido,
+            payment_form: metodoUsado,
             folio_number: 914,
             series: 'F'
           });

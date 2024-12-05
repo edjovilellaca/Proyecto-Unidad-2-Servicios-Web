@@ -1,5 +1,6 @@
 const { ApolloServer } = require('apollo-server');
 const mongoose = require('mongoose');
+
 //Product
 const productTypeDefs = require('./schemas/productSchema');
 const productResolvers = require('./resolvers/productResolver');
@@ -13,10 +14,11 @@ const brandResolvers = require('./resolvers/brandResolver');
 const shCartTypeDefs = require('./schemas/shCartSchema');
 const shCartResolvers = require('./resolvers/shCartResolvers');
 
-//PalMongo
+//Todo juntito
 const typeDefs = [productTypeDefs, userTypeDefs, brandTypeDefs, shCartTypeDefs];
 const resolvers = [productResolvers, userResolvers, brandResolvers, shCartResolvers];
 
+//PalMongo
 const startServer = async () => {
     await mongoose.connect('mongodb+srv://edjovilellaca:contra123@projects.qndkw.mongodb.net/CarritoCompras?retryWrites=true&w=majority&appName=projects');
     const server = new ApolloServer({ typeDefs, resolvers });

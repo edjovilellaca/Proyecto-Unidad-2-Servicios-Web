@@ -85,3 +85,17 @@ Po Tato:
     "quantity": 1
   }]
 } 
+
+67370e3dd090b55ed708209c
+
+
+Mi ID: 6751144abcea96a42f9693f8
+Mi carrito: 675114afbcea96a42f9693fa
+
+{  
+  "addItemToCartUserId2": "675114afbcea96a42f9693fa",
+  "addItemToCartInput2": [{
+    "productId": "673776d108a4fd4ee8eb3974",
+    "quantity": 1
+  }]
+} 

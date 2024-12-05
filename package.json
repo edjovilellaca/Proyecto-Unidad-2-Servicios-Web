@@ -11,11 +11,14 @@
   "dependencies": {
     "@apollo/server": "^4.11.2",
     "apollo-server": "^3.13.0",
+    "aws-sdk": "^2.1692.0",
     "express": "^4.21.1",
     "facturapi": "^4.4.1",
     "graphql": "^16.9.0",
     "mongoose": "^8.7.3",
-    "node-mailjet": "^6.0.6"
+    "node-mailjet": "^6.0.6",
+    "pdf-lib": "^1.17.1",
+    "puppeteer": "^23.10.1"
   },
   "description": ""
 }

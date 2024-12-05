@@ -3,6 +3,7 @@ const Product = require('../models/productModel');
 const facturapi = require('../apis/facturapi');
 const user = require('../models/userModel');
 
+const {createPDFAndUploadToS3} = require('./generarPDF');
 const Mailjet = require('node-mailjet');
 const { json } = require('express');
 const mailjet = Mailjet.apiConnect(
@@ -114,11 +115,11 @@ module.exports = {
     
         const userName = await getUserNameByCart(cart);
 
-        if(toString(shCart.status).match('Activo')){
+        if(toString(cart.status).match('Activo')){
             return await ShoppingCart.findByIdAndUpdate(cartId, updates, { new: true });
         }
         
-        await facturapi.createReceipt(cart, userName);
+        const facturapipi = await facturapi.createReceipt(cart, userName);
     
         const productDetailsHTML = cart.productos
             .map(item => `
@@ -147,10 +148,15 @@ module.exports = {
                     ${productDetailsHTML}
                 </tbody>
             </table>
-            <p>Total: $${cart.total.toFixed(2)}</p>
-            <br>
-            <p>Fecha de compra: ${cart.cDate}</p>
         `;
+
+        const adInfo1 = cart.total.toFixed(2);
+        const adInfo2 = cart.cDate;
+
+        const pdfUrl = await createPDFAndUploadToS3(facturapipi, productDetailsHTML, adInfo1, adInfo2);
+        console.log('PDF available at:', pdfUrl);
+
+        const todoTodito = htmlContent + `<p>${pdfUrl}</p>`;
     
         const request = mailjet
             .post('send', { version: 'v3.1' })
@@ -169,7 +175,7 @@ module.exports = {
                         ],
                         Subject: "Si jala!",
                         TextPart: `Recibo de compra para ${userName}`,
-                        HTMLPart: htmlContent,
+                        HTMLPart: todoTodito,
                     }
                 ]
             });
@@ -181,6 +187,7 @@ module.exports = {
             .catch((err) => {
                 console.error('Error al enviar correo:', err.statusCode, err.message);
             });
+
         return await ShoppingCart.findByIdAndUpdate(cartId, updates, { new: true });
     }
     
