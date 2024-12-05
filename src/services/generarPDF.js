@@ -4,8 +4,8 @@ const fs = require('fs');
 const path = require('path');
 
 AWS.config.update({
-    accessKeyId: 'AKIASBGQLGFXGMCM4OVB',
-    secretAccessKey: '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',
+    accessKeyId: 'llave1',
+    secretAccessKey: 'llave2',
     region: 'us-east-2',
 });
 const s3 = new AWS.S3();
