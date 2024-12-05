@@ -14,11 +14,9 @@ async function createPDFAndUploadToS3(facturapipi, productDetailsHTML, adInfo1, 
     const pdfPath = path.join(__dirname, 'invoice.pdf');
 
     try {
-        // Launch Puppeteer browser
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
 
-        // Prepare full HTML content
         const fullHTML = `
             <html>
                 <head>
@@ -56,18 +54,14 @@ async function createPDFAndUploadToS3(facturapipi, productDetailsHTML, adInfo1, 
             </html>
         `;
 
-        // Load HTML content
         await page.setContent(fullHTML);
 
-        // Generate PDF
         await page.pdf({ path: pdfPath, format: 'A4' });
 
         await browser.close();
 
-        // Read the generated PDF file
         const fileContent = fs.readFileSync(pdfPath);
 
-        // Upload PDF to S3
         const uploadParams = {
             Bucket: 'proyecto-u2-servicios-web',
             Key: `invoices/${Date.now()}_invoice.pdf`,
@@ -77,7 +71,6 @@ async function createPDFAndUploadToS3(facturapipi, productDetailsHTML, adInfo1, 
 
         const result = await s3.upload(uploadParams).promise();
 
-        // Clean up local PDF file
         fs.unlinkSync(pdfPath);
 
         return result.Location;
