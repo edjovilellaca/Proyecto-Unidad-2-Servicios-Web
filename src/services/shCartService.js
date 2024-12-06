@@ -2,11 +2,11 @@ const ShoppingCart = require('../models/shCartModel');
 const Product = require('../models/productModel');
 const facturapi = require('../apis/facturapi');
 const user = require('../models/userModel');
-const accountSid = 'llave1tulio';
-const authToken = 'llave2tulio';
+const accountSid = process.env.TULIOKEY1;
+const authToken = process.env.TULIOKEY2;
 const client = require('twilio')(accountSid, authToken);
 
-const {createPDFAndUploadToS3} = require('./generarPDF');
+const {createPDFAndUploadToS3} = require('../apis/generarPDF');
 const Mailjet = require('node-mailjet');
 const { json } = require('express');
 const mailjet = Mailjet.apiConnect(
