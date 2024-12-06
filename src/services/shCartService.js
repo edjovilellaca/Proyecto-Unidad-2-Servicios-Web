@@ -2,6 +2,9 @@ const ShoppingCart = require('../models/shCartModel');
 const Product = require('../models/productModel');
 const facturapi = require('../apis/facturapi');
 const user = require('../models/userModel');
+const accountSid = 'llave1tulio';
+const authToken = 'llave2tulio';
+const client = require('twilio')(accountSid, authToken);
 
 const {createPDFAndUploadToS3} = require('./generarPDF');
 const Mailjet = require('node-mailjet');
@@ -187,6 +190,39 @@ module.exports = {
             .catch((err) => {
                 console.error('Error al enviar correo:', err.statusCode, err.message);
             });
+
+        const productosPalMensaje = cart.productos
+            .map(item => `
+                    *Product: ${item.product.name}*
+                    Description: ${item.product.desc}
+                    Quantity: ${item.quantity}
+                    Price: ${item.product.price.toFixed(2)}
+
+            `)
+            .join('');    
+
+        const mensaje = `
+            🎉 Thank you for your purchase, ${userName.nombreCompleto}!
+            🧾 Receipt Details:
+                
+            - Receipt ID: 
+            ${facturapipi.id}
+
+            - Items: 
+            ${productosPalMensaje}
+
+            For any questions, feel free to contact us.
+            Checkout your purchase PDF at: ${pdfUrl}
+        `;
+
+        client.messages
+            .create({
+                body: mensaje,
+                from: '+17754851842',
+                to: `+52${userName.telefono}`
+            })
+            .then(message => console.log(`Message sent with SID: ${message.sid}`))
+            .catch(err => console.error(`Error sending message: ${err.message}`));
 
         return await ShoppingCart.findByIdAndUpdate(cartId, updates, { new: true });
     }
