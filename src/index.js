@@ -1,10 +1,7 @@
 const { ApolloServer } = require('apollo-server');
 const mongoose = require('mongoose');
-<<<<<<< Updated upstream
 
-=======
 const { ApolloServerPluginLandingPageGraphQLPlayground } = require("apollo-server-core");
->>>>>>> Stashed changes
 //Product
 const productTypeDefs = require('./schemas/productSchema');
 const productResolvers = require('./resolvers/productResolver');
