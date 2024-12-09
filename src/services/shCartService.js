@@ -1,9 +1,12 @@
+require('dotenv').config();
 const ShoppingCart = require('../models/shCartModel');
 const Product = require('../models/productModel');
 const facturapi = require('../apis/facturapi');
 const user = require('../models/userModel');
 const accountSid = process.env.TULIOKEY1;
 const authToken = process.env.TULIOKEY2;
+console.log('AccountSid: ', accountSid);
+console.log('authToken: ', authToken);
 const client = require('twilio')(accountSid, authToken);
 
 const {createPDFAndUploadToS3} = require('../apis/generarPDF');
@@ -122,7 +125,7 @@ module.exports = {
             return await ShoppingCart.findByIdAndUpdate(cartId, updates, { new: true });
         }
         
-        const facturapipi = await facturapi.createReceipt(cart, userName);
+        const [facturapipi, factuPDF] = await facturapi.createReceipt(cart, userName);
     
         const productDetailsHTML = cart.productos
             .map(item => `
@@ -159,7 +162,9 @@ module.exports = {
         const pdfUrl = await createPDFAndUploadToS3(facturapipi, productDetailsHTML, adInfo1, adInfo2);
         console.log('PDF available at:', pdfUrl);
 
-        const todoTodito = htmlContent + `<p>${pdfUrl}</p>`;
+        const casiTodoTodito = htmlContent + `<p>${pdfUrl}</p>`;
+        const casiTodoTodito2 = casiTodoTodito + `<p>PDF de Facturapi: ${factuPDF[0]}</p>`;
+        const todoTodito = casiTodoTodito2 + `<p>XML de Facturapi: ${factuPDF[1]}</p>`;
     
         const request = mailjet
             .post('send', { version: 'v3.1' })
@@ -193,26 +198,33 @@ module.exports = {
 
         const productosPalMensaje = cart.productos
             .map(item => `
-                    *Product: ${item.product.name}*
-                    Description: ${item.product.desc}
-                    Quantity: ${item.quantity}
-                    Price: ${item.product.price.toFixed(2)}
+                Product: ${item.product.name}
+                Description: ${item.product.desc}
+                Quantity: ${item.quantity}
+                Price: ${item.product.price.toFixed(2)}
 
             `)
             .join('');    
 
         const mensaje = `
-            🎉 Thank you for your purchase, ${userName.nombreCompleto}!
-            🧾 Receipt Details:
-                
-            - Receipt ID: 
-            ${facturapipi.id}
+        🎉 Thank you for your purchase, ${userName.nombreCompleto}!
+        🧾 Receipt Details:
+            
+        - Receipt ID: 
+        ${facturapipi.id}
 
-            - Items: 
-            ${productosPalMensaje}
+        - Items: 
+        ${productosPalMensaje}
 
-            For any questions, feel free to contact us.
-            Checkout your purchase PDF at: ${pdfUrl}
+        For any questions, feel free to contact us.
+        Checkout your purchase PDF at: 
+        ${pdfUrl}
+
+        Checkout your purchase PDF from Facturapi at: 
+        ${factuPDF[0]}
+        
+        Checkout your purchase XML from Facturapi at: 
+        ${factuPDF[1]}
         `;
 
         client.messages

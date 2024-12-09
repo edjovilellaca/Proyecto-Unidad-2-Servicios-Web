@@ -1,5 +1,6 @@
 const Facturapi = require('facturapi').default;
 const facturapi = new Facturapi('sk_test_dr0ao5D7ZWjxGbvMmApV4vaByZenkQYP82ABpq4LON');
+const { uploadFacturapiPDF } = require('../apis/generarPDF');
 
 async function createProduct(product){
     const facturapiProduct = {
@@ -97,11 +98,18 @@ async function createReceipt(shCart, user) {
             folio_number: 914,
             series: 'F'
           });
-
-        return await facturapi.receipts.create({
+          
+        const facturapipi = await facturapi.receipts.create({
             payment_form: Facturapi.PaymentForm.DINERO_ELECTRONICO,
             items: items
-        }); 
+        });
+
+        const elPDF = await facturapi.invoices.downloadPdf(invoice.id);
+        const elXML = await facturapi.invoices.downloadXml(invoice.id);
+
+        const factuPDF = await uploadFacturapiPDF(invoice.id, elPDF, elXML);
+
+        return [facturapipi, factuPDF];
     } catch (error) {
         console.error(`Error whilst creating receipt. ${error.message} in Facturapi`);
         throw new Error("Receipt could not be created in Facturapi.");
