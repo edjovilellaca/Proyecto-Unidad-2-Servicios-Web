@@ -3,6 +3,7 @@ const ShoppingCart = require('../models/shCartModel');
 const Product = require('../models/productModel');
 const facturapi = require('../apis/facturapi');
 const user = require('../models/userModel');
+const stripe = require('../apis/stripe');
 const accountSid = process.env.TULIOKEY1;
 const authToken = process.env.TULIOKEY2;
 console.log('AccountSid: ', accountSid);
@@ -126,6 +127,8 @@ module.exports = {
         }
         
         const [facturapipi, factuPDF] = await facturapi.createReceipt(cart, userName);
+
+        const linkPago = await stripe.paymentLink(cart.productos);
     
         const productDetailsHTML = cart.productos
             .map(item => `
@@ -177,7 +180,7 @@ module.exports = {
                         },
                         To: [
                             {
-                                Email: userName.email,
+                                Email: 'kayaolivaresbe@ittepic.edu.mx',
                                 Name: "ugabuga"
                             }
                         ],

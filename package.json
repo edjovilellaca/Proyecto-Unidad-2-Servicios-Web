@@ -20,6 +20,7 @@
     "node-mailjet": "^6.0.6",
     "pdf-lib": "^1.17.1",
     "puppeteer": "^23.10.1",
+    "stripe": "^17.4.0",
     "twilio": "^5.3.7"
   },
   "description": ""
