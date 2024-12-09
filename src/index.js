@@ -1,6 +1,10 @@
 const { ApolloServer } = require('apollo-server');
 const mongoose = require('mongoose');
+<<<<<<< Updated upstream
 
+=======
+const { ApolloServerPluginLandingPageGraphQLPlayground } = require("apollo-server-core");
+>>>>>>> Stashed changes
 //Product
 const productTypeDefs = require('./schemas/productSchema');
 const productResolvers = require('./resolvers/productResolver');
@@ -21,7 +25,13 @@ const resolvers = [productResolvers, userResolvers, brandResolvers, shCartResolv
 //PalMongo
 const startServer = async () => {
     await mongoose.connect('mongodb+srv://edjovilellaca:contra123@projects.qndkw.mongodb.net/CarritoCompras?retryWrites=true&w=majority&appName=projects');
-    const server = new ApolloServer({ typeDefs, resolvers });
+    const server = new ApolloServer({ 
+        typeDefs, 
+        resolvers,
+        plugins: [
+            ApolloServerPluginLandingPageGraphQLPlayground(),
+        ]
+     });
     server.listen().then(({ url }) => {
         console.log(`Servidor corriendo en ${url}`);
     });
