@@ -4,3 +4,5 @@ Instrucciones para configurar el entorno.
  npm i
 
 2.- Deben implementarse llaves proveídas por Amazon, colocamos una guía dentro del documento de las Apis, para evitar tener problemas con el uso publico de las llaves.
+
+3.- De ser necesario, si no se encuentra en la region implementada, deberá ingresar a la carpeta "apis/generarPDF.js" y modificar la region del AWS
