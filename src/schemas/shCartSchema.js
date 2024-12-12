@@ -19,6 +19,7 @@ const typeDefs = gql`
 
     type Query {
         shoppingCart(userId: ID!): ShoppingCart
+        shoppingCartNo(userId: ID!): ShoppingCart
         allCarts: [ShoppingCart]!
     }
 
@@ -38,10 +39,11 @@ const typeDefs = gql`
 
     type Mutation {
         createShoppingCart(userId: ID!): ShoppingCart!
-        addItemToCart(userId: ID!, input: [AddToCartInput!]!): ShoppingCart!
-        updateCartItem(userId: ID!, input: UpdateCartItemInput!): ShoppingCart!
-        removeItemFromCart(userId: ID!, productId: ID!): ShoppingCart!
-        clearCart(userId: ID!): ShoppingCart!
+        addItemToCart(cartId: ID!, input: [AddToCartInput!]!): ShoppingCart!
+        updateCartItem(cartId: ID!, input: UpdateCartItemInput!): ShoppingCart!
+        removeItemFromCart(cartId: ID!, productId: ID!): ShoppingCart!
+        removeOneItemFromCart(cartId: ID!, productId: ID!): ShoppingCart!
+        clearCart(cartId: ID!): ShoppingCart!
         updateShCart(cartId: ID!, input: UpdateCartInput!): ShoppingCart!
     }
 `;

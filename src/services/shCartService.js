@@ -23,7 +23,11 @@ const mailjet = Mailjet.apiConnect(
 
 module.exports = {
     getShoppingCartByUserId: async (userId) => {
-        return await ShoppingCart.findOne({ user: userId }).populate('productos.product');
+        return await ShoppingCart.findOne({ user: userId, status: "Activo" }).populate('productos.product');
+    },
+
+    getShoppingCartByUserIdNo: async (userId) => {
+        return await ShoppingCart.findOne({ user: userId, status: "Inactivo" }).populate('productos.product');
     },
     
     getAllCarts: async () => {
@@ -76,8 +80,8 @@ module.exports = {
         return await cart.save();
     },
 
-    updateCartItem: async (userId, input) => {
-        const cart = await ShoppingCart.findOne({ user: userId });
+    updateCartItem: async (cartId, input) => {
+        const cart = await ShoppingCart.findById(cartId);
         if (!cart) throw new Error('Carrito no encontrado.');
 
         const item = cart.productos.find(item => item.product.equals(input.productId));
@@ -91,8 +95,8 @@ module.exports = {
         return await cart.save();
     },
 
-    removeItemFromCart: async (userId, productId) => {
-        const cart = await ShoppingCart.findOne({ user: userId });
+    removeItemFromCart: async (cartId, productId) => {
+        const cart = await ShoppingCart.findById(cartId);
         if (!cart) throw new Error('Carrito no encontrado.');
 
         const itemIndex = cart.productos.findIndex(item => item.product.equals(productId));
@@ -105,8 +109,30 @@ module.exports = {
         return await cart.save();
     },
 
-    clearCart: async (userId) => {
-        const cart = await ShoppingCart.findOne({ user: userId });
+    removeOneItemFromCart: async (cartId, productId) => {
+        const cart = await ShoppingCart.findById(cartId);
+        if (!cart) throw new Error('Carrito no encontrado.');
+
+        const itemIndex = cart.productos.findIndex(item => item.product.equals(productId));
+        console.log("ItemIndex: ", itemIndex);
+        if (itemIndex === -1) throw new Error('Producto no encontrado en el carrito.');
+
+        if (itemIndex) {
+            console.log('Cantidad antes: ', cart.productos[itemIndex].quantity);
+            if(cart.productos[itemIndex].quantity == 0){
+                cart.productos.splice(itemIndex, 1);
+            }
+            cart.productos[itemIndex].quantity -= cart.productos[itemIndex].quantity;
+            console.log('Cantidad despues: ', cart.productos[itemIndex].quantity);
+        }
+
+        const product = await Product.findById(productId);
+        cart.total -= product.price * cart.productos[itemIndex].quantity;
+        return await cart.save();
+    },
+
+    clearCart: async (cartId) => {
+        const cart = await ShoppingCart.findById(cartId);
         if (!cart) throw new Error('Carrito no encontrado.');
 
         cart.productos = [];
