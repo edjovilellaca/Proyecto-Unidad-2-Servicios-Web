@@ -31,6 +31,10 @@ module.exports = {
         return await ShoppingCart.findOne({ user: userId, status: "Inactivo" }).populate('productos.product');
     },
     
+    allUserCarts: async (userId) => {
+        return await ShoppingCart.find({ user: userId }).populate('productos.product');
+    },
+    
     getAllCarts: async () => {
         return await ShoppingCart.find().populate('productos.product');
     },

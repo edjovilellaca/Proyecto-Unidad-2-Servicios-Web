@@ -4,6 +4,7 @@ const resolvers = {
     Query: {
         shoppingCart: (_, { userId }) => shCartService.getShoppingCartByUserId(userId),
         shoppingCartNo: (_, { userId }) => shCartService.getShoppingCartByUserIdNo(userId),
+        allUserCarts: (_, { userId }) => shCartService.allUserCarts(userId),
         allCarts: () => shCartService.getAllCarts(),
     },
     Mutation: {

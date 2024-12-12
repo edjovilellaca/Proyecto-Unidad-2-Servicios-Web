@@ -20,6 +20,7 @@ const typeDefs = gql`
     type Query {
         shoppingCart(userId: ID!): ShoppingCart
         shoppingCartNo(userId: ID!): ShoppingCart
+        allUserCarts(userId: ID!): [ShoppingCart]
         allCarts: [ShoppingCart]!
     }
 
