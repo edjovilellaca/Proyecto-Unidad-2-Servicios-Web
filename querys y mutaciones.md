@@ -139,5 +139,27 @@ mutation AddItemToCart($addItemToCartUserId3: ID!, $addItemToCartInput3: [AddToC
   "productId": "6728fd92d04308ebc4efcb6a"
 }
 
+# CreateUser Actualizado
+{
+  "input": {
+        "nombreCompleto": "Karla Yazmin Olivares Berdusco",
+        "email": "kayaolivaresbe@ittepic.edu.mx",
+        "password": "contra123",
+        "RFC": "OIBK011230BY5",
+        "direccion": "Boulevard Central 457",
+        "zipCode": 63197,
+        "telefono": "3111189064",
+        "tipoUsuario": "cliente",
+        "metodoPagoPreferido": ["Debito", "Transferencia"]
+    }
+}
+
+id: 675a5a541c0ee41d804c5ab3
+
+{
+  "createShoppingCartUserId2": "675a5a541c0ee41d804c5ab3"
+}
+
+carrito Yazmin: 675a5a9a1c0ee41d804c5ab5
 
 # Falta Buscar todos los carritos de un usuario
