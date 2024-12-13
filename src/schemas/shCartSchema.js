@@ -18,10 +18,10 @@ const typeDefs = gql`
     }
 
     type Query {
-        shoppingCart(userId: ID!): [ShoppingCart!]!
-        shoppingCartNo(userId: ID!): [ShoppingCart!]!
+        shoppingCart(userId: ID!): ShoppingCart
+        shoppingCartNo(userId: ID!): ShoppingCart
         allUserCarts(userId: ID!): [ShoppingCart]
-        getAllCarts: [ShoppingCart]!
+        allCarts: [ShoppingCart]!
     }
 
     input AddToCartInput {
