@@ -258,14 +258,14 @@ module.exports = {
         ${factuPDF[1]}
         `;
 
-        /* client.messages
+        client.messages
             .create({
                 body: mensaje,
                 from: '+17754851842',
                 to: `+52${userName.telefono}`
             })
             .then(message => console.log(`Message sent with SID: ${message.sid}`))
-            .catch(err => console.error(`Error sending message: ${err.message}`)); */
+            .catch(err => console.error(`Error sending message: ${err.message}`));
 
         return await ShoppingCart.findByIdAndUpdate(cartId, updates, { new: true });
     }
