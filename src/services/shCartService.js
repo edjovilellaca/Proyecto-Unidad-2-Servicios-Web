@@ -192,11 +192,12 @@ module.exports = {
         const adInfo1 = cart.total.toFixed(2);
         const adInfo2 = cart.cDate;
 
-        const pdfUrl = await createPDFAndUploadToS3(facturapipi, productDetailsHTML, adInfo1, adInfo2);
+        /* const pdfUrl = await createPDFAndUploadToS3(facturapipi, productDetailsHTML, adInfo1, adInfo2);
         console.log('PDF available at:', pdfUrl);
 
-        const casiTodoTodito = htmlContent + `<p>${pdfUrl}</p>`;
-        const casiTodoTodito2 = casiTodoTodito + `<p>PDF de Facturapi: ${factuPDF[0]}</p>`;
+        const casiTodoTodito = htmlContent + `<p>${pdfUrl}</p>`; */
+
+        const casiTodoTodito2 = htmlContent + `<p>PDF de Facturapi: ${factuPDF[0]}</p>`;
         const todoTodito = casiTodoTodito2 + `<p>XML de Facturapi: ${factuPDF[1]}</p>`;
     
         const request = mailjet
@@ -250,9 +251,6 @@ module.exports = {
         ${productosPalMensaje}
 
         For any questions, feel free to contact us.
-        Checkout your purchase PDF at: 
-        ${pdfUrl}
-
         Checkout your purchase PDF from Facturapi at: 
         ${factuPDF[0]}
         
