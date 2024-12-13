@@ -21,7 +21,15 @@ RUN apt-get update && apt-get install -y \
     libasound2 \
     libpangocairo-1.0-0 \
     libgtk-3-0 \
-    libgbm-dev
+    libgbm-dev \
+    wget \
+    ca-certificates \
+    fonts-liberation \
+    libappindicator3-1 \
+    libnspr4 \
+    libxss1 && \
+    npm install && \
+    npx puppeteer install
 
 # Copy the application code
 COPY . .

@@ -12,7 +12,8 @@ AWS.config.update({
 });
 const s3 = new AWS.S3();
 
-const chromiumPath = process.env.CHROMIUM_PATH || '/usr/bin/google-chrome';
+const chromiumPath = process.env.CHROMIUM_PATH || '/usr/bin/chromium' || '/usr/local/bin/chromium';
+const executablePath = await puppeteer.executablePath();
 
 async function createPDFAndUploadToS3(facturapipi, productDetailsHTML, adInfo1, adInfo2) {
     const pdfPath = path.join(__dirname, 'invoice.pdf');
@@ -20,7 +21,7 @@ async function createPDFAndUploadToS3(facturapipi, productDetailsHTML, adInfo1, 
     try {
         const browser = await puppeteer.launch({
             headless: true,
-            executablePath: chromiumPath,
+            executablePath: executablePath,
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
             env: {
                 PUPPETEER_CACHE_DIR: '/opt/render/.cache/puppeteer',
