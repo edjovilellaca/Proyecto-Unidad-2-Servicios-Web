@@ -28,7 +28,7 @@ module.exports = {
     },
 
     getShoppingCartByUserIdNo: async (userId) => {
-        return await ShoppingCart.findOne({ user: userId, status: "Inactivo" }).populate('productos.product');
+        return await ShoppingCart.find({ user: userId, status: "Inactivo" }).populate('productos.product');
     },
     
     allUserCarts: async (userId) => {
