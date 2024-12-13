@@ -25,7 +25,10 @@ const startServer = async () => {
         typeDefs, 
         resolvers, 
         cors: {
-            origin: 'http://localhost:5173',
+            origin: [
+                'http://localhost:5173',            
+                'https://studio.apollographql.com',
+            ],
             credentials: true,             
         },
     });

@@ -1,5 +1,5 @@
 require('dotenv').config();
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const AWS = require('aws-sdk');
 const fs = require('fs');
 const path = require('path');
