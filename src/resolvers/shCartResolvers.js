@@ -2,10 +2,16 @@ const shCartService = require('../services/shCartService');
 
 const resolvers = {
     Query: {
-        shoppingCart: (_, { userId }) => shCartService.getShoppingCartByUserId(userId),
+        shoppingCart: async (_, { userId }) => {
+            const carts = await shCartService.getShoppingCartByUserId(userId);
+            if (!carts || carts.length === 0) {
+                throw new Error('No shopping carts found for the given user');
+            }
+            return carts[0];
+        },
         shoppingCartNo: (_, { userId }) => shCartService.getShoppingCartByUserIdNo(userId),
         allUserCarts: (_, { userId }) => shCartService.allUserCarts(userId),
-        allCarts: () => shCartService.getAllCarts(),
+        getAllCarts: () => shCartService.getAllCarts(),
     },
     Mutation: {
         createShoppingCart: (_, { userId }) => shCartService.createShoppingCart(userId),

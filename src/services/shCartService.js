@@ -24,7 +24,7 @@ const mailjet = Mailjet.apiConnect(
 
 module.exports = {
     getShoppingCartByUserId: async (userId) => {
-        return await ShoppingCart.findOne({ user: userId, status: "Activo" }).populate('productos.product');
+        return await ShoppingCart.find({ user: userId, status: "Activo" }).populate('productos.product');
     },
 
     getShoppingCartByUserIdNo: async (userId) => {
