@@ -20,7 +20,7 @@ async function createPDFAndUploadToS3(facturapipi, productDetailsHTML, adInfo1, 
             headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
             env: {
-                PUPPETEER_CACHE_DIR: '/tmp/puppeteer-cache',
+                PUPPETEER_CACHE_DIR: '/opt/render/.cache/puppeteer',
             },
         });
         const page = await browser.newPage();
