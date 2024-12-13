@@ -16,7 +16,10 @@ async function createPDFAndUploadToS3(facturapipi, productDetailsHTML, adInfo1, 
     const pdfPath = path.join(__dirname, 'invoice.pdf');
 
     try {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox'], 
+        });
         const page = await browser.newPage();
 
         const fullHTML = `
