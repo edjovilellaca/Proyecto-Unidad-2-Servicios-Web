@@ -18,7 +18,10 @@ async function createPDFAndUploadToS3(facturapipi, productDetailsHTML, adInfo1, 
     try {
         const browser = await puppeteer.launch({
             headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox'], 
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            env: {
+                PUPPETEER_CACHE_DIR: '/tmp/puppeteer-cache',
+            },
         });
         const page = await browser.newPage();
 
