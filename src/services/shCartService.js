@@ -24,10 +24,12 @@ const mailjet = Mailjet.apiConnect(
 
 module.exports = {
     getShoppingCartByUserId: async (userId) => {
+        console.log('pa activar el render');
         return await ShoppingCart.findOne({ user: userId, status: "Activo" }).populate('productos.product');
     },
 
     getShoppingCartByUserIdNo: async (userId) => {
+        console.log('pa activar el render');
         return await ShoppingCart.find({ user: userId, status: "Inactivo" }).populate('productos.product');
     },
     
