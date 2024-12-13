@@ -99,3 +99,67 @@ Mi carrito: 675114afbcea96a42f9693fa
     "quantity": 1
   }]
 } 
+
+
+{
+  "cartId": "675114afbcea96a42f9693fa",
+  "updateShCartInput2": {
+    "status": "Inactivo"
+  }
+}
+
+Mi segundo carrito:
+675a656777310dc45b4730db
+
+# Agregar a carrito
+mutation AddItemToCart($addItemToCartUserId3: ID!, $addItemToCartInput3: [AddToCartInput!]!) {
+  addItemToCart(userId: $addItemToCartUserId3, input: $addItemToCartInput3) {
+    productos {
+      product {
+        _id
+      }
+      quantity
+    }
+  }
+}
+
+# Body 6736d60a263248a8a7aa52f5
+{  
+  "addItemToCartUserId2": "675a656777310dc45b4730db",
+  "addItemToCartInput2": [{
+    "productId": "6728fd92d04308ebc4efcb6a",
+    "quantity": 1
+  }]
+} 
+
+
+# Borrar item
+{  
+  "removeItemFromCartUserId2": "675a656777310dc45b4730db",
+  "productId": "6728fd92d04308ebc4efcb6a"
+}
+
+# CreateUser Actualizado
+{
+  "input": {
+        "nombreCompleto": "Karla Yazmin Olivares Berdusco",
+        "email": "kayaolivaresbe@ittepic.edu.mx",
+        "password": "contra123",
+        "RFC": "OIBK011230BY5",
+        "direccion": "Boulevard Central 457",
+        "zipCode": 63197,
+        "telefono": "3111189064",
+        "tipoUsuario": "cliente",
+        "metodoPagoPreferido": ["Debito", "Transferencia"]
+    }
+}
+
+id: 675a5a541c0ee41d804c5ab3
+
+{
+  "createShoppingCartUserId2": "675a5a541c0ee41d804c5ab3"
+}
+
+carrito Yazmin: 675a5a9a1c0ee41d804c5ab5
+
+# Falta Buscar todos los carritos de un usuario
