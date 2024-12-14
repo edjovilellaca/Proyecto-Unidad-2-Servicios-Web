@@ -194,11 +194,6 @@ module.exports = {
         const adInfo1 = cart.total.toFixed(2);
         const adInfo2 = cart.cDate;
 
-        /* const pdfUrl = await createPDFAndUploadToS3(facturapipi, productDetailsHTML, adInfo1, adInfo2);
-        console.log('PDF available at:', pdfUrl);
-
-        const casiTodoTodito = htmlContent + `<p>${pdfUrl}</p>`; */
-
         const casiTodoTodito2 = htmlContent + `<p>PDF de Facturapi: ${factuPDF[0]}</p>`;
         const todoTodito = casiTodoTodito2 + `<p>XML de Facturapi: ${factuPDF[1]}</p>`;
     
@@ -208,7 +203,7 @@ module.exports = {
                 Messages: [
                     {
                         From: {
-                            Email: "edjovilellaca@ittepic.edu.mx",
+                            Email: "joelpelucas@gmail.com", 
                             Name: "El Jefazo"
                         },
                         To: [
@@ -260,14 +255,14 @@ module.exports = {
         ${factuPDF[1]}
         `;
 
-        client.messages
+        /* client.messages
             .create({
                 body: mensaje,
                 from: '+17754851842',
                 to: `+52${userName.telefono}`
             })
             .then(message => console.log(`Message sent with SID: ${message.sid}`))
-            .catch(err => console.error(`Error sending message: ${err.message}`));
+            .catch(err => console.error(`Error sending message: ${err.message}`)); */
 
         return await ShoppingCart.findByIdAndUpdate(cartId, updates, { new: true });
     }
