@@ -23,6 +23,7 @@ const typeDefs = gql`
 
     type Query {
         products: [Product]!
+        searchProducts(keyword: String!): [Product]!
     }
 
     input CreateProductInput {
@@ -46,7 +47,6 @@ const typeDefs = gql`
         brandAlias: String
         quantity:   Int
         images:     [String]
-        
     }
 
     type Mutation {

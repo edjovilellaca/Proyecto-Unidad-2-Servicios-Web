@@ -8,6 +8,14 @@ const resolvers = {
             } catch (error) {
                 throw new Error(`Error fetching products: ${error.message}`);
             }
+        },
+        searchProducts: async (_, { keyword }) => {
+            console.log('keyword en resolver: ', keyword);
+            try {
+                return await productService.searchProducts(keyword);
+            } catch (error) {
+                throw new Error(`Error fetching products: ${error.message}`);
+            }
         }
     },
     Mutation: {
@@ -18,6 +26,7 @@ const resolvers = {
                 throw new Error(`Error creating product: ${error.message}`);
             }
         },
+
         updateProduct: async (_, { _id, updates }) => {
             try {
                 return await productService.updateProduct(_id, updates);
@@ -25,6 +34,7 @@ const resolvers = {
                 throw new Error(`Error updating product: ${error.message}`);
             }
         },
+
         deleteProduct: async (_, { _id }) => {
             try {
                 return await productService.deleteProduct(_id);
