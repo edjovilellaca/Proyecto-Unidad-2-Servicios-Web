@@ -2,10 +2,37 @@ const shCartService = require('../services/shCartService');
 
 const resolvers = {
     Query: {
-        shoppingCart: (_, { userId }) => shCartService.getShoppingCartByUserId(userId),
-        shoppingCartNo: (_, { userId }) => shCartService.getShoppingCartByUserIdNo(userId),
-        allUserCarts: (_, { userId }) => shCartService.allUserCarts(userId),
-        allCarts: () => shCartService.getAllCarts(),
+        shoppingCart: (_, { userId }) => {
+            try {
+                return shCartService.getShoppingCartByUserId(userId);
+            } catch (error) {
+                throw new Error(`Error fetching cart: ${error.message}`);
+            }
+        },
+
+        shoppingCartNo: (_, { userId }) => {
+            try {
+                return shCartService.getShoppingCartByUserIdNo(userId);
+            } catch (error) {
+                throw new Error(`Error fetching carts: ${error.message}`);
+            }
+        },
+
+        allUserCarts: (_, { userId }) => {
+            try {
+                return shCartService.allUserCarts(userId);
+            } catch (error) {
+                throw new Error(`Error fetching all of the user ${userId} carts: ${error.message}`);
+            }
+        },
+
+        allCarts: () => {
+            try {
+                return shCartService.getAllCarts();
+            } catch (error) {
+                throw new Error(`Error fetching all carts: ${error.message}`);
+            }
+        },
     },
     Mutation: {
         createShoppingCart: (_, { userId }) => shCartService.createShoppingCart(userId),

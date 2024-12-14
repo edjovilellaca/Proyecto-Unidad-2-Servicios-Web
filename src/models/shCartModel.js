@@ -20,6 +20,4 @@ const shCartSchema = new mongoose.Schema({
     facturapi:      {type: String,      required: false }         
 });
 
-const shCart = mongoose.model('shCart', shCartSchema);
-const cartItem = mongoose.model('cartItem', cartItemSchema);
-module.exports = shCart;
+module.exports = mongoose.model('shCart', shCartSchema);;

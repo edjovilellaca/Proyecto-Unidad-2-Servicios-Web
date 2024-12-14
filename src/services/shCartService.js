@@ -30,15 +30,15 @@ module.exports = {
 
     getShoppingCartByUserIdNo: async (userId) => {
         console.log('pa activar el render');
-        return await ShoppingCart.find({ user: userId, status: "Inactivo" }).populate('productos.product');
+        return await ShoppingCart.find({ user: userId, status: "Inactivo" });
     },
     
     allUserCarts: async (userId) => {
-        return await ShoppingCart.find({ user: userId }).populate('productos.product');
+        return await ShoppingCart.find({ user: userId });
     },
     
     getAllCarts: async () => {
-        return await ShoppingCart.find().populate('productos.product');
+        return await ShoppingCart.find();
     },
 
     delShoppinCart: async (cartId) => {
@@ -65,7 +65,7 @@ module.exports = {
         for (const item of input) {
             const product = await Product.findById(item.productId);
             console.log('product: ', product);
-            if (!product) throw new Error('Producto no encontrado.');
+            if (!product) throw new Error('Producto no encontrado.').populate('productos.product'); 
     
             const existingItem = cart.productos.find(cartItem => cartItem.product.equals(product._id));
             if (existingItem) {

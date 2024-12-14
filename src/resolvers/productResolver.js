@@ -10,7 +10,6 @@ const resolvers = {
             }
         },
         searchProducts: async (_, { keyword }) => {
-            console.log('keyword en resolver: ', keyword);
             try {
                 return await productService.searchProducts(keyword);
             } catch (error) {
