@@ -1,5 +1,5 @@
 const Facturapi = require('facturapi').default;
-const facturapi = new Facturapi('sk_test_dr0ao5D7ZWjxGbvMmApV4vaByZenkQYP82ABpq4LON');
+const facturapi = new Facturapi(process.env.FACTUKEY);
 const { uploadFacturapiPDF } = require('../apis/generarPDF');
 
 async function createProduct(product){
