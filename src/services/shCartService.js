@@ -14,8 +14,8 @@ const {createPDFAndUploadToS3} = require('../apis/generarPDF');
 const Mailjet = require('node-mailjet');
 const { json } = require('express');
 const mailjet = Mailjet.apiConnect(
-    'd662ab6c8b76e9a00a4ac2504b54357f',
-    'c3794a6df37d1282e45b83dbbfc97519',
+    process.env.MAILJET1,
+    process.env.MAILJET2,
     {
       config: {},
       options: {}
