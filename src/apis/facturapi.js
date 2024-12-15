@@ -1,5 +1,5 @@
 const Facturapi = require('facturapi').default;
-const facturapi = new Facturapi(process.env.FACTUKEY);
+const facturapi = new Facturapi('sk_test_rzWYjaPqv7X9Jbk6579O4krGQwNGRKE8p1l2LedywM');
 const { uploadFacturapiPDF } = require('../apis/generarPDF');
 
 async function createProduct(product){
@@ -18,6 +18,7 @@ async function createClient(user) {
         tax_id: user.RFC || "XAXX010101000",  
         tax_system: user.taxSystem || "601",    
         email: user.email,
+        phone: user.telefono,
         address: {
             zip: user.zipCode.toString() || "63000"
         }

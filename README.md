@@ -13,5 +13,7 @@ Instrucciones para configurar el entorno.
 
 6.- Implementar las llaves necesarias de Mailjet en el archivo .env con los nombres "MAILJET1" y "MAILJET2"
 
+6.- Implementar la llave necesaria de Facturapi en el archivo .env con el nombre "FACTURAKEY"
+
 Documentación de las APIs:
 https://app.swaggerhub.com/apis-docs/NAANESTRELLARO/ProyectoServicios/1.0.0#/Productos
