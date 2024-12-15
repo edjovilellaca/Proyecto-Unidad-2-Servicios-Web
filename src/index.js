@@ -34,7 +34,7 @@ const startServer = async () => {
             persistedQueries: false,
         });
 
-        const { url } = await server.listen({ port: process.env.PORT || 4000 });
+        const { url } = await server.listen();
         console.log(`🚀 Servidor corriendo en ${url}`);
     } catch (error) {
         console.error('❌ Error starting the server:', error.message);
