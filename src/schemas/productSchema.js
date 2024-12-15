@@ -6,6 +6,7 @@ const typeDefs = gql`
         name:   String!
         CountryOrigin: String!
         alias:  [String]!
+        logo: String!
     }
 
     type Product {
