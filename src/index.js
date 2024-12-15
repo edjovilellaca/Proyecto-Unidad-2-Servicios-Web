@@ -27,7 +27,7 @@ const startServer = async () => {
             cors: {
                 origin: [
                     'http://localhost:5173', 
-                    'https://studio.apollographql.com', // Allow Apollo Studio Sandbox
+                    'https://studio.apollographql.com',
                     'https://proyecto-unidad-2-servicios-web.onrender.com'
                 ],
                 credentials: true, 

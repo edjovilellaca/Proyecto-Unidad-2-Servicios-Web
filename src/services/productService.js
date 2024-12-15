@@ -4,7 +4,7 @@ const facturapi = require('../apis/facturapi');
 
 module.exports = {
     getAllProducts: async () => {
-        return await Product.find();
+        return await Product.find().populate('brand');
     }, 
 
     createProduct: async ({ name, desc, price, category, brandId, quantity, images }) => {
