@@ -6,6 +6,7 @@ const typeDefs = gql`
         name: String!
         CountryOrigin: String!
         alias: [String]
+        logo: String!
     }
 
     type Query {
@@ -17,12 +18,14 @@ const typeDefs = gql`
         name: String!
         CountryOrigin: String!
         alias: [String]
+        logo: String!
     }
 
     input UpdateBrandInput {
         name: String
         CountryOrigin: String
         alias: [String]
+        logo: String
     }
 
     type Mutation {

@@ -8,8 +8,8 @@ module.exports = {
         return await Brand.findById(_id);
     },
     createBrand: async (input) => {
-        const { name, alias, CountryOrigin } = input;
-        const brand = new Brand({ name, alias, CountryOrigin });
+        const { name, alias, CountryOrigin, logo } = input;
+        const brand = new Brand({ name, alias, CountryOrigin, logo });
         return await brand.save();
     },
     updateBrand: async (_id, updates) => {
