@@ -32,7 +32,6 @@ const startServer = async () => {
     }));
 
     const server = new ApolloServer({ typeDefs, resolvers });
-    await server.start();
 
     server.applyMiddleware({ app, cors: false });
 
