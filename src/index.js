@@ -18,19 +18,21 @@ const resolvers = [productResolvers, userResolvers, brandResolvers, shCartResolv
 
 const startServer = async () => {
     try {
-        // Connect to MongoDB
         await mongoose.connect('mongodb+srv://edjovilellaca:contra123@projects.qndkw.mongodb.net/CarritoCompras?retryWrites=true&w=majority&appName=projects');
         console.log('✅ MongoDB connected successfully.');
 
-        // Initialize Apollo Server
         const server = new ApolloServer({
             typeDefs,
             resolvers,
             cors: {
-                origin: ['http://localhost:5173', 'https://proyecto-unidad-2-servicios-web.onrender.com'],
-                credentials: true,
+                origin: [
+                    'http://localhost:5173', 
+                    'https://studio.apollographql.com', // Allow Apollo Studio Sandbox
+                    'https://proyecto-unidad-2-servicios-web.onrender.com'
+                ],
+                credentials: true, 
             },
-            persistedQueries: false, // Prevent unbounded cache
+            persistedQueries: false,
         });
 
         const PORT = process.env.PORT || 4000;
