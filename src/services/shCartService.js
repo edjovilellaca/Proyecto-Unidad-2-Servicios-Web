@@ -124,13 +124,14 @@ module.exports = {
         console.log("ItemIndex: ", itemIndex);
         if (itemIndex === -1) throw new Error('Producto no encontrado en el carrito.');
 
+        console.log('indexexexexe: ', itemIndex);
+
         if (itemIndex) {
-            console.log('Cantidad antes: ', cart.productos[itemIndex].quantity);
-            if(cart.productos[itemIndex].quantity == 0){
+            if(cart.productos[itemIndex].quantity == 1){
                 cart.productos.splice(itemIndex, 1);
+                return await cart.save();
             }
-            cart.productos[itemIndex].quantity -= cart.productos[itemIndex].quantity;
-            console.log('Cantidad despues: ', cart.productos[itemIndex].quantity);
+            cart.productos[itemIndex].quantity = cart.productos[itemIndex].quantity - 1;
         }
 
         const product = await Product.findById(productId);

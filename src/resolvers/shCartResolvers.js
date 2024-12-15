@@ -39,7 +39,7 @@ const resolvers = {
         addItemToCart: (_, { cartId, input }) => shCartService.addItemToCart(cartId, input),
         updateCartItem: (_, { userId, input }) => shCartService.updateCartItem(userId, input),
         removeItemFromCart: (_, { cartId, productId }) => shCartService.removeItemFromCart(cartId, productId),
-        removeOneItemFromCart: (_, { cartId, productId }) => shCartService.removeItemFromCart(cartId, productId),
+        removeOneItemFromCart: (_, { cartId, productId }) => shCartService.removeOneItemFromCart(cartId, productId),
         clearCart: (_, { userId }) => shCartService.clearCart(userId),
         updateShCart: (_, { cartId, input }) => shCartService.updateShCart(cartId, input),
     }
