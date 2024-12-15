@@ -1,7 +1,5 @@
 const { ApolloServer } = require('apollo-server');
 const mongoose = require('mongoose');
-const express = require('express');
-const cors = require('cors');
 
 // Product
 const productTypeDefs = require('./schemas/productSchema');
@@ -23,21 +21,19 @@ const resolvers = [productResolvers, userResolvers, brandResolvers, shCartResolv
 const startServer = async () => {
     await mongoose.connect('mongodb+srv://edjovilellaca:contra123@projects.qndkw.mongodb.net/CarritoCompras?retryWrites=true&w=majority&appName=projects');
 
-    const app = express();
-
-    app.use(cors({
-        origin: ['http://localhost:5173', 'https://proyecto-unidad-2-servicios-web-1.onrender.com'],
-        credentials: true,
-        methods: ['GET', 'POST', 'OPTIONS'],
-    }));
-
-    const server = new ApolloServer({ typeDefs, resolvers });
-
-    server.applyMiddleware({ app, cors: false });
-
-    const PORT = process.env.PORT || 4000;
-    app.listen(PORT, () => {
-        console.log(`Servidor corriendo en https://proyecto-unidad-2-servicios-web-1.onrender.com${server.graphqlPath}`);
+    const server = new ApolloServer({ 
+        typeDefs, 
+        resolvers, 
+        cors: {
+            origin: ['http://localhost:5173', 'https://proyecto-unidad-2-servicios-web-1.onrender.com'],
+            methods: ['GET', 'POST', 'OPTIONS'],
+            allowedHeaders: ['Content-Type', 'Authorization'],
+            credentials: true,
+        },
+    });
+    
+    server.listen().then(({ url }) => {
+        console.log(`Servidor corriendo en ${url}`);
     });
 };
 
