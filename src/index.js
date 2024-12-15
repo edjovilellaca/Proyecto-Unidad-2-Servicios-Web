@@ -25,8 +25,10 @@ const startServer = async () => {
         typeDefs, 
         resolvers, 
         cors: {
-            origin: 'http://localhost:5173',
-            credentials: true,             
+            origin: ['http://localhost:5173', 'https://proyecto-unidad-2-servicios-web-1.onrender.com'],
+            methods: ['GET', 'POST', 'OPTIONS'],
+            allowedHeaders: ['Content-Type', 'Authorization'],
+            credentials: true,
         },
     });
     
