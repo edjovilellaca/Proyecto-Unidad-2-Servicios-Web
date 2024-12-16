@@ -162,6 +162,7 @@ module.exports = {
         const [facturapipi, factuPDF] = await facturapi.createReceipt(cart, userName);
 
         const linkPago = await stripe.paymentLink(cart.productos);
+        const adInfo1 = cart.total.toFixed(2);
     
         const productDetailsHTML = cart.productos
             .map(item => `
@@ -190,9 +191,8 @@ module.exports = {
                     ${productDetailsHTML}
                 </tbody>
             </table>
+            <h2>Total: ${adInfo1}</h2>
         `;
-
-        const adInfo1 = cart.total.toFixed(2);
         const adInfo2 = cart.cDate;
 
         const casiTodoTodito2 = htmlContent + `<p>PDF de Facturapi: ${factuPDF[0]}</p>`;
