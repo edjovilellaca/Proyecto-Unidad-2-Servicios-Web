@@ -6,6 +6,19 @@ const typeDefs = gql`
         quantity: Int!
     }
 
+    type Product {
+        _id:        ID!
+        name:       String!
+        desc:       String!
+        price:      Float!
+        category:   String!
+        brand:      Brand!    
+        quantity:   Int!
+        cDate:      String!
+        images:     [String!]!
+        facturapi:  String
+    }
+
     type ShoppingCart {
         _id: ID!
         user: User!

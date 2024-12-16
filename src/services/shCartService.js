@@ -30,15 +30,15 @@ module.exports = {
 
     getShoppingCartByUserIdNo: async (userId) => {
         console.log('pa activar el render');
-        return await ShoppingCart.find({ user: userId, status: "Inactivo" });
+        return await ShoppingCart.find({ user: userId, status: "Inactivo" }).populate('productos.product');
     },
     
     allUserCarts: async (userId) => {
-        return await ShoppingCart.find({ user: userId });
+        return await ShoppingCart.find({ user: userId }).populate('productos.product');
     },
     
     getAllCarts: async () => {
-        return await ShoppingCart.find();
+        return await ShoppingCart.find().populate('productos.product');
     },
 
     delShoppinCart: async (cartId) => {
