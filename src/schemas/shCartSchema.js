@@ -25,8 +25,8 @@ const typeDefs = gql`
         productos: [CartItem!]!
         subtotal: Float! 
         total: Float!
-        sDate: DateTime!
-        cDate: DateTime!
+        sDate: String!
+        cDate: String!
         status: String!
     }
 
