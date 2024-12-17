@@ -25,6 +25,7 @@ const typeDefs = gql`
     type Query {
         products: [Product]!
         searchProducts(keyword: String!): [Product]!
+        searchProductId(prodId: ID!): Product!
     }
 
     input CreateProductInput {

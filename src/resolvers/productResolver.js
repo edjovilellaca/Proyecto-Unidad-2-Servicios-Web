@@ -15,6 +15,13 @@ const resolvers = {
             } catch (error) {
                 throw new Error(`Error fetching products: ${error.message}`);
             }
+        },
+        searchProductId: async (_, { prodId }) => {
+            try {
+                return await productService.searchProductId(prodId);
+            } catch (error) {
+                throw new Error(`Error fetching products: ${error.message}`);
+            }
         }
     },
     Mutation: {

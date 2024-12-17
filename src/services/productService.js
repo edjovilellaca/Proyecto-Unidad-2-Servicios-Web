@@ -27,6 +27,15 @@ module.exports = {
             throw new Error(`Products with the keyword '${keyword}' not found.`);
         }
     },
+    
+    searchProductId: async (prodId) => {
+        console.log('ID en service: ', prodId);
+        try {
+            return await Product.findById(prodId).populate('brand');
+        } catch (error) {
+            throw new Error(`Products with the ID '${prodId}' was not found.`);
+        }
+    },
 
     updateProduct: async (_id, updates) => {
         const product = await Product.findById(_id);
