@@ -51,8 +51,8 @@ module.exports = {
             productos: [],
             subtotal: 0,
             total: 0,
-            createdAt: new Date(),
-            updatedAt: new Date()
+            sDate: new Date(),
+            cDate: new Date()
         });
     
         return await cart.save();
