@@ -28,7 +28,8 @@ const startServer = async () => {
                 origin: [
                     'http://localhost:5173', 
                     'https://studio.apollographql.com',
-                    'https://proyecto-unidad-2-servicios-web.onrender.com'
+                    'https://proyecto-unidad-2-servicios-web.onrender.com',
+                    'https://carritocompras-phai.onrender.com'
                 ],
                 credentials: true, 
             },
